@@ -1,16 +1,8 @@
-class Admin::FeedbackReviewsController <  Admin::BaseController
-  resource_controller
+class Admin::FeedbackReviewsController <  Admin::ResourceController
   belongs_to :review
 
-  create.response do |wants|
-    wants.html { redirect_to collection_path }
-  end
-
-  update.response do |wants|
-    wants.html { redirect_to collection_path }
-  end
-
-  destroy.response do |wants|
-    wants.html { redirect_to collection_path }
+  def index
+    @review = Spree::Review.find(params[:review_id])
+    @collection = @review.feedback_reviews
   end
 end
